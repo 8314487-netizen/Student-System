@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Results Management System</title>
+</head>
+<body>
+  <h1>Student Results Management System</h1>
+  <p>Open the browser Console (F12) to see the output.</p>
+
+  <script>
+    class Student {
+      constructor(id, name, grades, attendance) {
+        this.id = id;
+        this.name = name;
+        this.grades = grades;
+        this.attendance = attendance;
+      }
+
+      calculateAverage() {
+        const total = this.grades.reduce((sum, grade) => sum + grade, 0);
+        return total / this.grades.length;
+      }
+
+      getGrade(average) {
+        if (average >= 90) {
+          return "A";
+        } else if (average >= 80) {
+          return "B";
+        } else if (average >= 70) {
+          return "C";
+        } else if (average >= 60) {
+          return "D";
+        } else if (average >= 50) {
+          return "E";
+        } else {
+          return "F";
+        }
+      }
+
+      getFinalResult() {
+        const average = this.calculateAverage();
+        if (average >= 50 && this.attendance >= 75) {
+          return "Passed";
+        }
+        return "Needs Review";
+      }
+    }
+
+    const studentsList = [
+      new Student(101, "Ahmed Ali", [85, 90, 85], 92),
+      new Student(102, "Sara Mahoud", [42, 48, 45], 80),
+      new Student(103, "Omar Khaled", [47, 50, 40], 70),
+      new Student(105, "Mona Hassan", [65, 55, 60], 60),
+    ];
+
+    const strugglingStudents = studentsList.filter((student) => {
+      const avg = student.calculateAverage();
+      return avg >= 40 && avg <= 49;
+    });
+
+    const MERCY_POINTS = 5;
+    const mercyResults = strugglingStudents.map((student) => {
+      const oldAverage = student.calculateAverage();
+      return {
+        id: student.id,
+        name: student.name,
+        oldAverage: oldAverage,
+        newAverage: oldAverage + MERCY_POINTS,
+      };
+    });
+
+    const totalNewAverages = mercyResults.reduce(
+      (sum, student) => sum + student.newAverage,
+      0
+    );
+
+    const mercyAverage =
+      mercyResults.length > 0 ? totalNewAverages / mercyResults.length : 0;
+
+    console.log("========== Students Report ==========");
+    studentsList.forEach((student) => {
+      const average = student.calculateAverage();
+      console.log(
+        `Name: ${student.name} | Average: ${average.toFixed(2)} | Grade: ${student.getGrade(average)} | Result: ${student.getFinalResult()}`
+      );
+    });
+
+    console.log("\n========== Struggling Students After Mercy ==========");
+    console.log(mercyResults);
+
+    console.log("\n========== Struggling Students Average After Mercy =======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
